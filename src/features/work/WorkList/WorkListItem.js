@@ -5,7 +5,7 @@ class WorkListItem extends Component {
     render() {
         const {work} = this.props
         return (
-            <div>
+            <>
                 <Segment.Group>
                 <Segment>
                     <Item.Group>
@@ -37,7 +37,7 @@ class WorkListItem extends Component {
                     <Button as="a" color="teal" floated="right" content="View" />
                 </Segment>
                 </Segment.Group>
-            </div>
+            </>
         )
     }
 }

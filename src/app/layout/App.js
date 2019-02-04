@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../../features/nav/NavBar'
+import NavBar from '../../features/nav/NavBar/NavBar'
 import WorkDashboard from '../../features/work/WorkDashboard/WorkDashboard'
 import {Container} from 'semantic-ui-react'
 class App extends Component {
