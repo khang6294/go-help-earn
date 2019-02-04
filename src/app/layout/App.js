@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-
+import NavBar from '../../features/nav/NavBar'
+import WorkDashboard from '../../features/work/WorkDashboard/WorkDashboard'
+import {Container} from 'semantic-ui-react'
 class App extends Component {
     render() {
         return (
         <div>
-            <h1>Go Helps Earn</h1>
+            <NavBar/>
+            <Container className="main">
+                <WorkDashboard/>
+            </Container>
         </div>
         );
     }
