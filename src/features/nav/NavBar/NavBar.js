@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Menu,Container,Button} from 'semantic-ui-react'
 import SignedIn from '../Menus/SignedIn'
 import SignedOut from '../Menus/SignedOut'
-
+import {Link} from 'react-router-dom'
 class NavBar extends Component {
     state = {
         isAuth: false
@@ -26,7 +26,7 @@ class NavBar extends Component {
             <div>
                 <Menu inverted fixed="top">
                     <Container>
-                        <Menu.Item header>
+                        <Menu.Item header as={Link} to="/">
                             GoHelpEarn
                         </Menu.Item>
                         <Menu.Item name="Works" />
