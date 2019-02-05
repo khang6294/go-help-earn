@@ -5,14 +5,25 @@ import App from './app/layout/App';
 import "semantic-ui-css/semantic.min.css";
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import {createStore ,combineReducers,applyMiddleware} from 'redux';
 
 
+
+const rootReducer = combineReducers({
+    
+})
+
+
+export const store = createStore(rootReducer,applyMiddleware(thunk));
 let render = () => {
     ReactDOM.render(
-        <BrowserRouter>
+        <Provider store = {store}>
+         <BrowserRouter>
             <App />
         </BrowserRouter>
-        , document.getElementById('root')
+        </Provider>, document.getElementById('root')
     );
 }
 
