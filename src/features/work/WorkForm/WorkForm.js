@@ -15,7 +15,7 @@ class WorkForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.event)
+        this.props.createWork(this.state.event)
     }
 
     handleInputChange = (e) => {

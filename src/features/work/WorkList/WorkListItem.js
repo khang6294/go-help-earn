@@ -29,7 +29,7 @@ class WorkListItem extends Component {
                 </Segment>
                 <Segment secondary>
                     <List horizontal>
-                    {work.attendees.map(attendee => <WorkListAttendee attendee={attendee} key={attendee.id}/>)}
+                    { work.attendees && work.attendees.map(attendee => <WorkListAttendee attendee={attendee} key={attendee.id}/>)}
                     </List>
                 </Segment>
                 <Segment clearing>

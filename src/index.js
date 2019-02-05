@@ -8,11 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import {createStore ,combineReducers,applyMiddleware} from 'redux';
-
+import WorkReducer from './store/reducers/work'
 
 
 const rootReducer = combineReducers({
-    
+    work: WorkReducer
 })
 
 
