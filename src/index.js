@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import {createStore ,combineReducers,applyMiddleware} from 'redux';
 import WorkReducer from './store/reducers/work'
+import ScrollToTop from './app/utils/ScrollToTop'
 
 
 const rootReducer = combineReducers({
@@ -20,9 +21,11 @@ export const store = createStore(rootReducer,applyMiddleware(thunk));
 let render = () => {
     ReactDOM.render(
         <Provider store = {store}>
-         <BrowserRouter>
-            <App />
-        </BrowserRouter>
+            <BrowserRouter>
+                <ScrollToTop>
+                    <App />
+                </ScrollToTop>
+            </BrowserRouter>
         </Provider>, document.getElementById('root')
     );
 }
