@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Segment,Item,Icon,List,Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 import WorkListAttendee from './WorkListAttendee'
 class WorkListItem extends Component {
     render() {
@@ -34,7 +35,13 @@ class WorkListItem extends Component {
                 </Segment>
                 <Segment clearing>
                 <span>{work.description}</span>
-                    <Button as="a" color="teal" floated="right" content="View" />
+                    <Button 
+                        as={Link} 
+                        to={`/work/${work.id}`} 
+                        color="teal" 
+                        floated="right" 
+                        content="View"
+                    />
                 </Segment>
                 </Segment.Group>
             </>

@@ -4,6 +4,7 @@ import WorkDashboard from '../../features/work/WorkDashboard/WorkDashboard'
 import {Container} from 'semantic-ui-react'
 import HomePage from '../../features/home/HomePage'
 import {Switch, Route} from 'react-router-dom'
+import WorkDetailsPage from '../../features/work/WorkDetails/WorkDetailsPage'
 class App extends Component {
     render() {
         return (
@@ -19,6 +20,7 @@ class App extends Component {
                         <Container className="main">
                             <Switch>
                                 <Route path="/works" component={WorkDashboard}/>
+                                <Route path="/work/:workId" exact component ={WorkDetailsPage}/>
                             </Switch>
                         </Container>
                     </>

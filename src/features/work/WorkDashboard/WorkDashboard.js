@@ -29,7 +29,9 @@ class WorkDashboard extends Component {
         return (
         <Grid>
             <Grid.Column width ={10}>
-                <WorkList works = {works}/>
+                <WorkList 
+                    works = {works}
+                />
             </Grid.Column>
             <Grid.Column width = {6}>
                 <Button onClick={this.handleOpenForm} positive content="Create work"/>
@@ -51,5 +53,5 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps,{
-    createWork: actionCreators.createWork
+    createWork: actionCreators.createWork,
 })(WorkDashboard);

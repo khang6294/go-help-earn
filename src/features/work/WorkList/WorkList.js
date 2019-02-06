@@ -6,7 +6,11 @@ class WorkList extends Component {
         return (
         <div>
             <h1>Work List</h1>
-            {works.map(work => <WorkListItem key={work.id} work={work}/>)}
+            {works.map(work => 
+            <WorkListItem 
+                key={work.id}
+                work={work}
+            />)}
         </div>
         )
     }

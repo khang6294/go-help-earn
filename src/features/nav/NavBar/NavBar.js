@@ -29,7 +29,7 @@ class NavBar extends Component {
                         <Menu.Item header as={Link} to="/">
                             GoHelpEarn
                         </Menu.Item>
-                        <Menu.Item name="Works" />
+                        <Menu.Item as={Link} to="/works" name="Works" />
                         {isAuth && <Menu.Item>
                             <Button floated="right" positive inverted content="Create Work" />
                         </Menu.Item>}
