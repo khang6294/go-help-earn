@@ -5,6 +5,7 @@ import {Container} from 'semantic-ui-react'
 import HomePage from '../../features/home/HomePage'
 import {Switch, Route} from 'react-router-dom'
 import WorkDetailsPage from '../../features/work/WorkDetails/WorkDetailsPage'
+import WorkForm from '../../features/work/WorkForm/WorkForm'
 class App extends Component {
     render() {
         return (
@@ -21,6 +22,8 @@ class App extends Component {
                             <Switch>
                                 <Route path="/works" component={WorkDashboard}/>
                                 <Route path="/work/:workId" exact component ={WorkDetailsPage}/>
+                                <Route path="/manage/:workId" component={WorkForm} />
+                                <Route path="/createWork" component = {WorkForm}/>
                             </Switch>
                         </Container>
                     </>

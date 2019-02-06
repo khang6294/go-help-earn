@@ -5,7 +5,7 @@ const initialState = {
         {
             id: '1',
             title: 'Carry the sofa',
-            date: '2018-03-27T11:00:00+00:00',
+            date: '2018-03-27',
             fee: 15,
             category: 'help',
             description:
@@ -30,7 +30,7 @@ const initialState = {
         {
             id: '2',
             title: 'Clean the house',
-            date: '2018-03-28T14:00:00+00:00',
+            date: '2018-03-28',
             fee:20,
             category: 'drinks',
             description:
@@ -53,7 +53,6 @@ const initialState = {
             ]
         }
     ],
-    work:null
 }
 
 
@@ -63,12 +62,16 @@ const workReducer = (state = initialState, action) => {
         const works = [...state.works]
         works.push(action.payload)
         return {
-            ...state,
             works: works
         }
         case actionTypes.UPDATE_WORK:
+        const newWorks = [
+            ...state.works.filter(work => work.id !== action.payload.id),
+            {...action.payload}
+        ]
+
         return {
-            ...state,
+            works: newWorks
         }
         case actionTypes.DELETE_WORK:
         return{

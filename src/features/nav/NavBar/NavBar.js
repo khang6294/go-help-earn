@@ -31,7 +31,7 @@ class NavBar extends Component {
                         </Menu.Item>
                         <Menu.Item as={Link} to="/works" name="Works" />
                         {isAuth && <Menu.Item>
-                            <Button floated="right" positive inverted content="Create Work" />
+                            <Button as={Link} to="/createWork" floated="right" positive inverted content="Create Work" />
                         </Menu.Item>}
                         {isAuth ? (
                             <SignedIn signOut={this.handleSignOut} />
