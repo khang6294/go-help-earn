@@ -1,5 +1,6 @@
 import React from 'react';
 import { Segment, Grid, Icon, Button } from 'semantic-ui-react';
+import format from 'date-fns/format'
 
 const WorkDetailsInfo = ({work}) => {
     return (
@@ -20,7 +21,7 @@ const WorkDetailsInfo = ({work}) => {
                 <Icon name="calendar" size="large" color="teal" />
             </Grid.Column>
             <Grid.Column width={15}>
-                <span>{work.date}</span>
+                <span>{format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} </span>
             </Grid.Column>
             </Grid>
         </Segment>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Segment,Item,Icon,List,Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import WorkListAttendee from './WorkListAttendee'
+import format from 'date-fns/format'
+
 class WorkListItem extends Component {
     render() {
         const {work} = this.props
@@ -24,7 +26,7 @@ class WorkListItem extends Component {
                 </Segment>
                 <Segment>
                     <span>
-                    <Icon name="clock" /> {work.date} |
+                    <Icon name="clock" /> {format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} |
                     <Icon name="marker" /> {work.venue}
                     </span>
                 </Segment>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
-
+import format from 'date-fns/format'
 const eventImageTextStyle = {
     bottom: '5%',
     left: '5%',
@@ -23,7 +23,7 @@ const WorkDetailsHeader = ({work}) => {
                     content={work.title}
                     style={{ color: 'black' }}
                     />
-                    <p>{work.date}</p>
+                    <p>{format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} </p>
                     <p>
                     Posted by <strong>{work.postedBy}</strong>
                     </p>

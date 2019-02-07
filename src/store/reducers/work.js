@@ -5,7 +5,7 @@ const initialState = {
         {
             id: '1',
             title: 'Carry the sofa',
-            date: '2018-03-27',
+            date: '2018-03-27T16:00:00',
             fee: 15,
             category: 'help',
             description:

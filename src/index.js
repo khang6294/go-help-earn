@@ -12,11 +12,16 @@ import WorkReducer from './store/reducers/work'
 import ScrollToTop from './app/utils/ScrollToTop'
 import {getFirebase,firebaseReducer} from 'react-redux-firebase'
 import {getFirestore,firestoreReducer} from 'redux-firestore'
+import ReduxToastr from 'react-redux-toastr'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import {reducer as toastrReducer} from 'react-redux-toastr';
+
 
 
 const rootReducer = combineReducers({
     firebase: firebaseReducer,
     firestore: firestoreReducer,
+    toastr: toastrReducer,
     work: WorkReducer
 })
 
@@ -27,6 +32,11 @@ let render = () => {
         <Provider store = {store}>
             <BrowserRouter>
                 <ScrollToTop>
+                    <ReduxToastr
+                        position='bottom-right'
+                        transitionIn='fadeIn'
+                        transitionOut='fadeOut'
+                    />
                     <App />
                 </ScrollToTop>
             </BrowserRouter>
