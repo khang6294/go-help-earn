@@ -10,14 +10,18 @@ import {Provider} from 'react-redux'
 import {createStore ,combineReducers,applyMiddleware} from 'redux';
 import WorkReducer from './store/reducers/work'
 import ScrollToTop from './app/utils/ScrollToTop'
+import {getFirebase,firebaseReducer} from 'react-redux-firebase'
+import {getFirestore,firestoreReducer} from 'redux-firestore'
 
 
 const rootReducer = combineReducers({
+    firebase: firebaseReducer,
+    firestore: firestoreReducer,
     work: WorkReducer
 })
 
 
-export const store = createStore(rootReducer,applyMiddleware(thunk));
+export const store = createStore(rootReducer,applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})));
 let render = () => {
     ReactDOM.render(
         <Provider store = {store}>
