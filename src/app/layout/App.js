@@ -6,10 +6,12 @@ import HomePage from '../../features/home/HomePage'
 import {Switch, Route} from 'react-router-dom'
 import WorkDetailsPage from '../../features/work/WorkDetails/WorkDetailsPage'
 import WorkForm from '../../features/work/WorkForm/WorkForm'
+import ModalManager from '../../features/modal/ModalManger'
 class App extends Component {
     render() {
         return (
             <>
+            <ModalManager/>
             <Switch>
                 <Route path='/' exact component={HomePage}/>
             </Switch>

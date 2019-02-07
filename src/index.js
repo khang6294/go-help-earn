@@ -15,6 +15,7 @@ import {getFirestore,firestoreReducer} from 'redux-firestore'
 import ReduxToastr from 'react-redux-toastr'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import {reducer as toastrReducer} from 'react-redux-toastr';
+import ModalReducer from '../src/store/reducers/modal'
 
 
 
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     firebase: firebaseReducer,
     firestore: firestoreReducer,
     toastr: toastrReducer,
-    work: WorkReducer
+    work: WorkReducer,
+    modal: ModalReducer
 })
 
 
