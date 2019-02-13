@@ -10,8 +10,11 @@ const initialState = {
             category: 'help',
             description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-            city: 'Helsinki, Finland',
-            venue: "Opastinsilta 2B, 00520, Helsinki, Finland",
+            place: "Opastinsilta 2B, 00520, Helsinki, Finland",
+            placeCoord: {
+                lat: 50,
+                lng: 50
+            },
             postedBy: 'Ken',
             hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
             attendees: [
@@ -35,8 +38,11 @@ const initialState = {
             category: 'drinks',
             description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-            city: 'Oulu, Finland',
-            venue: 'Punch & Judy, Henrietta Street, London, UK',
+            place: 'Oulu, Finland',
+            placeCoord: {
+                lat: 49.2,
+                lng: 48.1
+            },
             postedBy: 'Joe',
             hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
             attendees: [

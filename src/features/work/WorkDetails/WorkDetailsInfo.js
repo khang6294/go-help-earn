@@ -43,7 +43,7 @@ class WorkDetailsInfo extends Component{
                     <Icon name="marker" size="large" color="teal" />
                 </Grid.Column>
                 <Grid.Column width={11}>
-                    <span>{work.venue}</span>
+                    <span>{work.place}</span>
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <Button onClick={this.showMapToggle} color="teal" size="tiny" content="Show Map" />
@@ -51,7 +51,7 @@ class WorkDetailsInfo extends Component{
                 </Grid>
             </Segment>
             {this.state.showMap &&
-            <WorkDetailsMap lat={42} lng={43}/>}
+            <WorkDetailsMap lat={work.placeCoord.lat} lng={work.placeCoord.lng}/>}
             </Segment.Group>
         );
     }

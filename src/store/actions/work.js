@@ -6,9 +6,7 @@ export const createWork = (work) => {
         try {
             dispatch({
                 type: actionTypes.CREATE_WORK,
-                payload: {
-                    work
-                }
+                payload: work
             });
             toastr.success('Success', 'New work created')
         } catch (error) {
@@ -22,7 +20,7 @@ export const updateWork = (work) => {
         try {
             dispatch({
                 type: actionTypes.UPDATE_WORK,
-        payload: work
+                payload: work
             });
             toastr.success('Success', 'Work has been updated')
         } catch (error) {
