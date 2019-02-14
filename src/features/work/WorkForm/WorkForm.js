@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Segment,Form,Button,Container} from 'semantic-ui-react'
+import {Segment,Form,Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import PlacesAutocomplete from 'react-places-autocomplete';
 import {geocodeByAddress,getLatLng} from 'react-places-autocomplete';
@@ -80,9 +80,7 @@ class WorkForm extends Component {
                         <div>
                             <input
                             {...getInputProps({
-                                placeholder: 'Event Place ...',
-                                className: 'location-search-input',
-                                
+                                placeholder: 'Event Place ...',                                
                             })}
                             />
                             {this.state.work.place !== "" && this.state.loadSuggest && 

@@ -3,7 +3,7 @@ import {Grid} from 'semantic-ui-react'
 import WorkList from '../WorkList/WorkList'
 import * as actionCreators from '../../../store/actions/index'
 import {connect} from 'react-redux'
-
+import {firestoreConnect} from 'react-redux-firebase'
 class WorkDashboard extends Component {
 
     state = {
@@ -11,6 +11,8 @@ class WorkDashboard extends Component {
 
     render() {
         const {works} = this.props
+        console.log(works)
+
         return (
         <Grid>
             <Grid.Column width ={10}>
@@ -26,11 +28,13 @@ class WorkDashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    works: state.work.works
+    works: state.firestore.ordered.works
 })
 
 
 
 export default connect(mapStateToProps,{
     createWork: actionCreators.createWork,
-})(WorkDashboard);
+})(
+    firestoreConnect([{collection:'works'}])(WorkDashboard)
+);

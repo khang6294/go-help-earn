@@ -7,7 +7,6 @@ const initialState = {
             title: 'Carry the sofa',
             date: '2018-03-27T16:00:00',
             fee: 15,
-            category: 'help',
             description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
             place: "Opastinsilta 2B, 00520, Helsinki, Finland",

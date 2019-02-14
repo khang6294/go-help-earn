@@ -7,17 +7,27 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import {createStore ,combineReducers,applyMiddleware} from 'redux';
+import {createStore ,combineReducers,applyMiddleware,compose} from 'redux';
 import WorkReducer from './store/reducers/work'
 import ScrollToTop from './app/utils/ScrollToTop'
-import {getFirebase,firebaseReducer} from 'react-redux-firebase'
-import {getFirestore,firestoreReducer} from 'redux-firestore'
+import {reactReduxFirebase,getFirebase,firebaseReducer} from 'react-redux-firebase'
+import {reduxFirestore,getFirestore,firestoreReducer} from 'redux-firestore'
 import ReduxToastr from 'react-redux-toastr'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 import ModalReducer from '../src/store/reducers/modal'
+import firebase from './firebaseConfig'
 
+const rrfConfig = {
+    userProfile: 'users',
+    attachAuthIsReady: true,
+    useFirestoreForProfile: true
+};
 
+const createStoreWithFirebase = compose(
+    reactReduxFirebase(firebase, rrfConfig),
+    reduxFirestore(firebase)
+)(createStore)
 
 const rootReducer = combineReducers({
     firebase: firebaseReducer,
@@ -28,7 +38,7 @@ const rootReducer = combineReducers({
 })
 
 
-export const store = createStore(rootReducer,applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})));
+export const store = createStoreWithFirebase(rootReducer,applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})));
 let render = () => {
     ReactDOM.render(
         <Provider store = {store}>
