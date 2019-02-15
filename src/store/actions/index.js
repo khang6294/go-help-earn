@@ -3,3 +3,8 @@ export {
     updateWork,
     deleteWork
 } from './work'
+
+export {
+    openModal,
+    closeModal
+} from './modal'

@@ -1,8 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal'
 const modalLookUp = {
-
+    LoginModal,
+    RegisterModal
 }
 const ModalManger = (props) => {
     let renderedModal = null
