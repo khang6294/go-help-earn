@@ -26,7 +26,7 @@ class WorkListItem extends Component {
                 </Segment>
                 <Segment>
                     <span>
-                    <Icon name="clock" /> {format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} |
+                    <Icon name="clock" /> {format(work.date.toDate(), 'dddd Do MMMM')} at {format(work.date.toDate(), 'HH:mm')} |
                     <Icon name="marker" /> {work.place}
                     </span>
                 </Segment>

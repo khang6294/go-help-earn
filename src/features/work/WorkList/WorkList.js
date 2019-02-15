@@ -3,7 +3,6 @@ import WorkListItem from './WorkListItem'
 class WorkList extends Component {
     render() {
         const {works} = this.props
-        console.log(works)
         return (
         <div>
             <h1>Work List</h1>
