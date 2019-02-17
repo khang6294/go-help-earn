@@ -16,11 +16,14 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     return {
-        work: work
+        work: work,
+        works: state.work.works
+        
     }
 }
 
-const EventDetailsPage = ({work}) => {
+const EventDetailsPage = ({work,works}) => {
+    console.log(works)
     return (
         <Grid>
         <Grid.Column width={10}>

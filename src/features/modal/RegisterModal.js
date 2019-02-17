@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Modal} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-
 import RegisterForm from '../auth/Register';
 import * as actionCreators from '../../store/actions/index'
 
@@ -11,7 +10,10 @@ class RegisterModal extends Component {
             <Modal
                 size='mini'
                 open={true}
-                onClose={this.props.closeModal}
+                onClose={() => {
+                    this.props.closeModal();
+                    this.props.resetErr();
+                }}
             >
                 <Modal.Header>
                     Register
@@ -27,5 +29,6 @@ class RegisterModal extends Component {
 }
 
 export default connect(null, {
-    closeModal: actionCreators.closeModal
+    closeModal: actionCreators.closeModal,
+    resetErr: actionCreators.resetErr
 })(RegisterModal);

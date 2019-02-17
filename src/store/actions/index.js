@@ -8,3 +8,10 @@ export {
     openModal,
     closeModal
 } from './modal'
+
+export {
+    // register,
+    login,
+    logout,
+    resetErr
+} from './auth'

@@ -16,6 +16,7 @@ import ReduxToastr from 'react-redux-toastr'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 import ModalReducer from '../src/store/reducers/modal'
+import AuthReducer from '../src/store/reducers/auth'
 import firebase from './firebaseConfig'
 
 const rrfConfig = {
@@ -34,9 +35,9 @@ const rootReducer = combineReducers({
     firestore: firestoreReducer,
     toastr: toastrReducer,
     work: WorkReducer,
-    modal: ModalReducer
+    modal: ModalReducer,
+    auth: AuthReducer
 })
-
 
 export const store = createStoreWithFirebase(rootReducer,applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})));
 let render = () => {
