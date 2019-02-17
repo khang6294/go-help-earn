@@ -63,7 +63,7 @@ const RegisterForm = (props) => (
                     <p>{props.error.message}</p>
                 </Message>
                 }
-                <Button positive type="submit" disabled={isSubmitting}>
+                <Button positive type="submit" disabled={errors.email || isSubmitting}>
                     Login
                 </Button>
                 <Button type="button">
