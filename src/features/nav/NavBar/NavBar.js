@@ -3,18 +3,16 @@ import {Menu,Container,Button} from 'semantic-ui-react'
 import SignedIn from '../Menus/SignedIn'
 import SignedOut from '../Menus/SignedOut'
 import { Link, withRouter } from 'react-router-dom';
+import { withFirebase } from 'react-redux-firebase'
 import * as actionCreators from '../../../store/actions/index'
 import {connect} from 'react-redux'
 
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.firebase.auth
 })
 
 class NavBar extends Component {
-    state = {
-        isAuth: false
-    };
     
     handleSignIn = () => {
         this.props.openModal('LoginModal')
@@ -25,13 +23,13 @@ class NavBar extends Component {
     }
 
     handleSignOut = () => {
-        this.setState({
-            isAuth: false
-        });
+        this.props.firebase.logout()
     };
 
     render() {
-        const {isAuth} = this.state
+        const {auth} = this.props
+        const authenticated = auth.isLoaded && !auth.isEmpty
+
         return (
             <div>
                 <Menu inverted fixed="top">
@@ -40,11 +38,11 @@ class NavBar extends Component {
                             GoHelpEarn
                         </Menu.Item>
                         <Menu.Item as={Link} to="/works" name="Works" />
-                        {isAuth && <Menu.Item>
+                        {authenticated && <Menu.Item>
                             <Button as={Link} to="/createWork" floated="right" positive inverted content="Create Work" />
                         </Menu.Item>}
-                        {isAuth ? (
-                            <SignedIn signOut={this.handleSignOut} />
+                        {authenticated ? (
+                            <SignedIn auth={auth} signOut={this.handleSignOut} />
                         ) : (
                             <SignedOut 
                                 signIn={this.handleSignIn}
@@ -58,6 +56,6 @@ class NavBar extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {
+export default withRouter(withFirebase(connect(mapStateToProps, {
     openModal: actionCreators.openModal
-})(NavBar))
+})(NavBar)))
