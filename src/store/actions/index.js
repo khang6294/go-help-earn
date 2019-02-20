@@ -12,5 +12,6 @@ export {
 export {
     register,
     login,
-    resetErr
+    resetErr,
+    socialLogin
 } from './auth'

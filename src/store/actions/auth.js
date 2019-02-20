@@ -46,6 +46,30 @@ export const login = (loginInfo) => {
     }
 }
 
+
+export const socialLogin = (selectedProvider) => {
+    return async (dispatch) => {
+        const firestore = getFirestore();
+        dispatch(closeModal())
+        firebase
+            .login({
+                provider: selectedProvider,
+                type: 'popup'
+            })
+            .then((user) => {
+                if (user.additionalUserInfo.isNewUser) {
+                    firestore.set(`users/${user.user.uid}`, {
+                        displayName: user.profile.displayName,
+                        photoURL: user.profile.avatarUrl,
+                        createdAt: firestore.FieldValue.serverTimestamp()
+                    })
+            }})
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}
+
 export const resetErr = () => {
     return {
         type: actionTypes.RESET_ERR,

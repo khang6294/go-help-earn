@@ -1,8 +1,9 @@
 import React from 'react'
-import {Form,Button,Message} from 'semantic-ui-react'
+import {Form,Button,Message,Divider} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import * as actionCreators from '../../store/actions/index'
 import { Formik } from 'formik';
+import SocialLogin from './SocialLogin/SocialLogin'
 
 const LoginForm = (props) => (
     <div>
@@ -63,6 +64,12 @@ const LoginForm = (props) => (
                     <p>{props.error.message}</p>
                 </Message>
                 }
+                <Divider horizontal>
+                    OR
+                </Divider>
+                <Form.Field>
+                    <SocialLogin socialLogin={props.socialLogin}/>
+                </Form.Field>
                 <Button positive type="submit" disabled={errors.email || isSubmitting}>
                     Login
                 </Button>
@@ -81,5 +88,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,{
     login: actionCreators.login,
-    closeModal: actionCreators.closeModal
+    closeModal: actionCreators.closeModal,
+    socialLogin : actionCreators.socialLogin
 })(LoginForm)
