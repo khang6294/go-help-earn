@@ -66,7 +66,7 @@ const LoginForm = (props) => (
                 <Button positive type="submit" disabled={errors.email || isSubmitting}>
                     Login
                 </Button>
-                <Button type="button">
+                <Button type="button" onClick={() => props.closeModal('LoginModal')} >
                     Cancel
                 </Button>
             </Form>
@@ -80,5 +80,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps,{
-    login: actionCreators.login
+    login: actionCreators.login,
+    closeModal: actionCreators.closeModal
 })(LoginForm)

@@ -1,44 +1,46 @@
 import * as actionTypes from './actionTypes'
 import firebase from '../../firebaseConfig'
+import {getFirestore} from 'redux-firestore'
+import {closeModal} from './modal'
 
-// export const register = (registerInfo) => {
-//     return dispatch => {
-//         firebase
-//             .auth()
-//             .createUserWithEmailAndPassword(registerInfo.email, registerInfo.password)
-//             .then(createdUser => {
-//                 createdUser.user.updateProfile({
-//                     displayName: registerInfo.name,
-//                     photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
-//                 })
-//                     .then(() => {
-//                         firebase.database().ref("users").child(createdUser.user.uid).set({
-//                             name: createdUser.user.displayName,
-//                             avatar: createdUser.user.photoURL
-//                         })
-//                             .then(() => {
-//                                 dispatch({type:actionTypes.REGISTER_SUCCESS,payload: createdUser})
-//                             })
-//                     })
-//                     .catch(err => {
-//                         dispatch({type: actionTypes.REGISTER_FAIL,payload:err})
-//                     });
+export const register = (registerInfo) => {
+    return (dispatch) => {
+        const firestore = getFirestore();
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(registerInfo.email, registerInfo.password)
+            .then(createdUser => {
+                createdUser.user.updateProfile({
+                    displayName: registerInfo.name,
+                })
+                let newUser = {
+                    displayName: registerInfo.name,
+                    createdAt: firestore.FieldValue.serverTimestamp()
+                }
+                console.log(createdUser)
+                firestore.set(`users/${createdUser.user.uid}`, {...newUser})
+                    .then(() => {
+                        dispatch(closeModal());
+                    })
+                    .catch(err => {
+                        dispatch({type: actionTypes.REGISTER_FAIL,payload:err})
+                    });
                 
-//             })
-//             .catch(err => {
-//                 dispatch({type: actionTypes.REGISTER_FAIL,payload:err})
-//             });
-//     }
-// }
+            })
+            .catch(err => {
+                console.log(err)
+                dispatch({type: actionTypes.REGISTER_FAIL,payload:err})
+            });
+    }
+}
 
 export const login = (loginInfo) => {
     return dispatch => {
         firebase
             .auth()
             .signInWithEmailAndPassword(loginInfo.email, loginInfo.password)
-            .then(signedInUser => {
-                console.log(signedInUser)
-                dispatch({type:actionTypes.LOGIN_SUCCESS,payload: signedInUser})
+            .then(() => {
+                dispatch(closeModal())
             })
             .catch(err => {
                 dispatch({type: actionTypes.LOGIN_FAIL,payload:err})
@@ -49,13 +51,6 @@ export const login = (loginInfo) => {
 export const resetErr = () => {
     return {
         type: actionTypes.RESET_ERR,
-    }
-}
-
-export const logout = () => {
-    return dispatch => {
-        firebase.auth().signOut()
-            .then(() => dispatch({type:actionTypes.LOGOUT, payload:''}));
     }
 }
 

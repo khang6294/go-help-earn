@@ -13,7 +13,6 @@ class LoginModal extends Component {
                 open={true}
                 onClose={() => {
                     this.props.closeModal();
-                    this.props.resetErr();
                 }}
             >
                 <Modal.Header>
@@ -31,5 +30,4 @@ class LoginModal extends Component {
 
 export default connect(null, {
     closeModal: actionCreators.closeModal,
-    resetErr: actionCreators.resetErr
 })(LoginModal);

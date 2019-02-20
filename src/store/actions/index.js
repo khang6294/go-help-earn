@@ -10,8 +10,7 @@ export {
 } from './modal'
 
 export {
-    // register,
+    register,
     login,
-    logout,
     resetErr
 } from './auth'

@@ -7,7 +7,7 @@ import { Formik} from 'formik';
 const RegisterForm = (props) => (
     <div>
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: '', password: '',name:'' }}
             validate={values => {
                 let errors = {};
                 if (!values.email) {
@@ -20,7 +20,7 @@ const RegisterForm = (props) => (
                     return errors;
                 }}
             onSubmit={(values, { setSubmitting }) => {
-                // props.register(values)
+                props.register(values)
                 setSubmitting(false);
             }}
         >
@@ -35,6 +35,18 @@ const RegisterForm = (props) => (
             }) => (
             <Form onSubmit={handleSubmit}>
             <Form.Field>
+                <label>Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                />
+            
+                {touched.name && errors.name ? <div style={{color:'red',fontWeight:'bold'}}>{errors.name}</div> : null }
+            </Form.Field>
+            <Form.Field>
                 <label>Email</label>
                 <input
                     type="email"
@@ -45,7 +57,7 @@ const RegisterForm = (props) => (
                 />
             
                 {touched.email && errors.email ? <div style={{color:'red',fontWeight:'bold'}}>{errors.email}</div> : null }
-                </Form.Field>
+            </Form.Field>
                 <Form.Field>
                 <label>Password</label>
                 <input
@@ -64,9 +76,9 @@ const RegisterForm = (props) => (
                 </Message>
                 }
                 <Button positive type="submit" disabled={errors.email || isSubmitting}>
-                    Login
+                    Register
                 </Button>
-                <Button type="button">
+                <Button type="button" onClick={() => props.closeModal('RegisterModal')}>
                     Cancel
                 </Button>
             </Form>
@@ -75,6 +87,11 @@ const RegisterForm = (props) => (
     </div>
 );
 
-export default connect(null,{
-    // register: actionCreators.register
+const mapStateToProps = state => ({
+    error: state.auth.error
+})
+
+export default connect(mapStateToProps,{
+    register: actionCreators.register,
+    closeModal: actionCreators.closeModal
 })(RegisterForm)
