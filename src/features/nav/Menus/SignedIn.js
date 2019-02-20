@@ -1,12 +1,12 @@
 import React from 'react'
 import {Image,Dropdown,Menu} from 'semantic-ui-react'
 const SignedIn = (props) => {
-    const {signOut,auth} = props
+    const {signOut,profile} = props
     return (
         <>
             <Menu.Item position="right">
-                <Image avatar spaced="right" src='/img/user.png' />
-                <Dropdown pointing="top left" text={auth.email}>
+                <Image avatar spaced="right" src={profile.photoURL || '/img/user.png'} />
+                <Dropdown pointing="top left" text={profile.displayName}>
                 <Dropdown.Menu>
                     <Dropdown.Item text="Create Work" icon="plus" />
                     <Dropdown.Item text="My Events" icon="calendar" />
