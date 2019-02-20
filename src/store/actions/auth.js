@@ -17,7 +17,6 @@ export const register = (registerInfo) => {
                     displayName: registerInfo.name,
                     createdAt: firestore.FieldValue.serverTimestamp()
                 }
-                console.log(createdUser)
                 firestore.set(`users/${createdUser.user.uid}`, {...newUser})
                     .then(() => {
                         dispatch(closeModal());
@@ -28,7 +27,6 @@ export const register = (registerInfo) => {
                 
             })
             .catch(err => {
-                console.log(err)
                 dispatch({type: actionTypes.REGISTER_FAIL,payload:err})
             });
     }
