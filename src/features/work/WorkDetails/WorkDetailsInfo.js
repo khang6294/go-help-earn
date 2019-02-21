@@ -15,6 +15,10 @@ class WorkDetailsInfo extends Component{
 
     render(){
         const {work} = this.props
+        let workDate;
+        if (work.date) {
+            workDate = work.date.toDate()
+        }
         return (
             <Segment.Group>
             <Segment attached="top">
@@ -33,7 +37,7 @@ class WorkDetailsInfo extends Component{
                     <Icon name="calendar" size="large" color="teal" />
                 </Grid.Column>
                 <Grid.Column width={15}>
-                    <span>{format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} </span>
+                    <span>{format(workDate, 'dddd Do MMMM')} at {format(workDate, 'HH:mm')} </span>
                 </Grid.Column>
                 </Grid>
             </Segment>

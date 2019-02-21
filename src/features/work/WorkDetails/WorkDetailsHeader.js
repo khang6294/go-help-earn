@@ -11,6 +11,10 @@ const eventImageTextStyle = {
 };
 
 const WorkDetailsHeader = ({work}) => {
+    let workDate;
+    if (work.date) {
+        workDate = work.date.toDate()
+    }
     return (
         <Segment.Group>
         <Segment basic attached="top" style={{ padding: '0' }}>
@@ -23,7 +27,7 @@ const WorkDetailsHeader = ({work}) => {
                     content={work.title}
                     style={{ color: 'black' }}
                     />
-                    <p>{format(work.date, 'dddd Do MMMM')} at {format(work.date, 'HH:mm')} </p>
+                    <p>{format(workDate, 'dddd Do MMMM')} at {format(workDate, 'HH:mm')} </p>
                     <p>
                     Posted by <strong>{work.postedBy}</strong>
                     </p>
