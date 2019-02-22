@@ -66,8 +66,12 @@ class WorkForm extends Component {
                     <input name="title" value={work.title} onChange={this.handleInputChange} placeholder="Work Name" />
                 </Form.Field>
                 <Form.Field>
-                    <label>Event Date</label>
-                    <input name="date" value={work.date} onChange={this.handleInputChange} type="date" placeholder="Event Date" />
+                    <label>Work Date</label>
+                    <input name="date" value={work.date} onChange={this.handleInputChange} type="date" placeholder="Work Date" />
+                </Form.Field>
+                <Form.Field>
+                    <label>Work Description</label>
+                    <input name="description" value={work.description} onChange={this.handleInputChange} type="text" placeholder="Work Description" />
                 </Form.Field>
                 <Form.Field>
                     <label>Place</label>
@@ -115,10 +119,6 @@ class WorkForm extends Component {
                     <label>Fee</label>
                     <input name="fee" value={work.fee} onChange={this.handleInputChange} placeholder="Enter the fee for the work" />
                 </Form.Field>
-                <Form.Field>
-                    <label>Posted By</label>
-                    <input name="postedBy" value={work.postedBy} onChange={this.handleInputChange} placeholder="Enter the name of person posting" />
-                </Form.Field>
                 <Button positive type="submit">
                     Submit
                 </Button>
@@ -141,7 +141,7 @@ const mapStateToProps = (state,ownProps) => {
         date:'',
         fee: 0,
         place:'',
-        postedBy:''
+        description:''
     }
   
     if (workId && state.work.works.length > 0) {

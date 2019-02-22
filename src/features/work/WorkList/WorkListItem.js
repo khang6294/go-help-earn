@@ -13,12 +13,12 @@ class WorkListItem extends Component {
                 <Segment>
                     <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" circular src={work.hostPhotoURL} />
+                        <Item.Image size="tiny" circular src={work.creatorPhotoURL} />
                         <Item.Content>
                             <Item.Header as="a">{work.title}</Item.Header>
                             <Item.Meta>${work.fee}</Item.Meta>
                             <Item.Description>
-                                Posted by <a>{work.postedBy}</a>
+                                Created by <a>{work.createdBy}</a>
                             </Item.Description>
                         </Item.Content>
                     </Item>
