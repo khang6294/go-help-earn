@@ -1,7 +1,8 @@
 export {
     createWork,
     updateWork,
-    deleteWork
+    deleteWork,
+    getWorksForDashboard
 } from './work'
 
 export {

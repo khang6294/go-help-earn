@@ -3,13 +3,15 @@ import {Grid} from 'semantic-ui-react'
 import WorkList from '../WorkList/WorkList'
 import * as actionCreators from '../../../store/actions/index'
 import {connect} from 'react-redux'
-import {firestoreConnect,isLoaded, isEmpty} from 'react-redux-firebase'
+import {firestoreConnect} from 'react-redux-firebase'
 import Loading from '../../../app/layout/Loading'
 class WorkDashboard extends Component {
-
+    componentDidMount(){
+        this.props.getWorksForDashboard()
+    }
     render() {
-        const {works} = this.props
-        if (!isLoaded(works) || isEmpty(works)) return <Loading inverted={true} />
+        const {works,loading} = this.props
+        // if (loading) return <Loading inverted={true} />;
         return (
         <Grid>
             <Grid.Column width ={10}>
@@ -26,12 +28,13 @@ class WorkDashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        works: state.firestore.ordered.works 
+        works: state.work.works,
     }
 }
 
 export default connect(mapStateToProps,{
     createWork: actionCreators.createWork,
+    getWorksForDashboard: actionCreators.getWorksForDashboard
 })(
     firestoreConnect([{collection:'works'}])(WorkDashboard)
 );

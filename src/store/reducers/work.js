@@ -1,8 +1,14 @@
 import * as actionTypes from '../actions/actionTypes'
 
-
-const workReducer = (state = [], action) => {
+const initialState ={
+    works: []
+}
+const workReducer = (state = initialState, action) => {
     switch (action.type){
+        case actionTypes.FETCH_WORK:
+        return {
+            works: action.payload.works
+        }
         default:
         return state
     }
