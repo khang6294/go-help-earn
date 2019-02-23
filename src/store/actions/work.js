@@ -25,16 +25,14 @@ export const createWork = (work) => {
 }
 
 export const updateWork = (work) => {
-    return async dispatch => {
-        try {
-            dispatch({
-                type: actionTypes.UPDATE_WORK,
-                payload: work
-            });
-            toastr.success('Success', 'Work has been updated')
-        } catch (error) {
-            toastr.error('Oops', 'Something went wrong')
-        }
+    return (dispatch,getState) => {
+        const firestore = getFirestore();
+        work.date = moment(work.date).toDate();
+        firestore.update(`works/${work.id}`, work)
+            .then(() => toastr.success('Success', 'Event has been updated'))
+            .catch(() => {
+                toastr.error('Oops', 'Something went wrong')
+        })
     };
 }
 

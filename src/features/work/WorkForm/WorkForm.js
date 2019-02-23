@@ -4,11 +4,15 @@ import {connect} from 'react-redux'
 import PlacesAutocomplete from 'react-places-autocomplete';
 import {geocodeByAddress,getLatLng} from 'react-places-autocomplete';
 import * as actionCreators from '../../../store/actions/index'
-
+import { withFirestore } from 'react-redux-firebase';
+import moment from 'moment'
 class WorkForm extends Component {
 
     state = {
-        work: {...this.props.work},
+        work: {
+            ...this.props.work,
+            date: this.props.work ? this.props.work.date.seconds ? moment(this.props.work.date.toDate()).format("YYYY-MM-DDTHH:mm"): '' : ''
+        },
     }
 
     handlePlaceSelect = selectedPlace => {
@@ -57,6 +61,7 @@ class WorkForm extends Component {
 
     render() {
         const {work} = this.state
+        console.log(this.props.match.params.workId)
         return (
         <>
             <Segment>
@@ -67,7 +72,7 @@ class WorkForm extends Component {
                 </Form.Field>
                 <Form.Field>
                     <label>Work Date</label>
-                    <input name="date" value={work.date} onChange={this.handleInputChange} type="date" placeholder="Work Date" />
+                    <input name="date" value={work.date} onChange={this.handleInputChange} type="datetime-local" placeholder="Work Date" />
                 </Form.Field>
                 <Form.Field>
                     <label>Work Description</label>
@@ -134,7 +139,6 @@ class WorkForm extends Component {
 
 
 const mapStateToProps = (state,ownProps) => {
-    const workId = ownProps.match.params.workId;
 
     let work = {
         title: '',
@@ -143,17 +147,16 @@ const mapStateToProps = (state,ownProps) => {
         place:'',
         description:''
     }
-  
-    if (workId && state.work.works.length > 0) {
-      work = state.work.works.filter(work => work.id === workId)[0]
+    if (state.firestore.ordered.works && state.firestore.ordered.works[0]) {
+
+        work = state.firestore.ordered.works.filter(work => work.id === ownProps.match.params.workId)[0]
     }
-  
     return {
-      work:work
+        work:work
     }
 }
 
-export default connect(mapStateToProps,{
+export default withFirestore(connect(mapStateToProps,{
     createWork: actionCreators.createWork,
     updateWork: actionCreators.updateWork
-})(WorkForm)
+})(WorkForm))

@@ -17,7 +17,11 @@ class WorkDetailsInfo extends Component{
         const {work} = this.props
         let workDate;
         if (work.date) {
-            workDate = work.date.toDate()
+            if(work.date.seconds){
+                workDate = work.date.toDate()
+            } else {
+                workDate = work.date
+            }
         }
         return (
             <Segment.Group>

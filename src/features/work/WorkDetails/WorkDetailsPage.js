@@ -9,7 +9,7 @@ import WorkDetailsChat from './WorkDetailsChat';
 const mapStateToProps = (state, ownProps) => {
     let work = {};
     if (state.firestore.ordered.works && state.firestore.ordered.works[0]) {
-        work = state.firestore.ordered.works[0];
+        work = state.firestore.ordered.works.filter(work => work.id === ownProps.match.params.workId)[0]
     }
     return {
         work: work,
@@ -20,7 +20,6 @@ class EventDetailsPage extends Component{
 
     componentDidMount() {
         const { firestore, match } = this.props;
-        console.log(match)
         firestore.setListener(`works/${match.params.workId}`);
     }
 

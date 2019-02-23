@@ -6,12 +6,8 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 class WorkDashboard extends Component {
 
-    state = {
-    }
-
     render() {
         const {works} = this.props
-        console.log(works)
 
         return (
         <Grid>
@@ -27,9 +23,11 @@ class WorkDashboard extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    works: state.firestore.ordered.works
-})
+const mapStateToProps = (state) => {
+    return {
+        works: state.firestore.ordered.works 
+    }
+}
 
 
 

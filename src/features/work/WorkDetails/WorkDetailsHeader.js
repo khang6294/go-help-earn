@@ -13,7 +13,11 @@ const eventImageTextStyle = {
 const WorkDetailsHeader = ({work}) => {
     let workDate;
     if (work.date) {
-        workDate = work.date.toDate()
+        if(work.date.seconds){
+            workDate = work.date.toDate()
+        } else {
+            workDate = work.date
+        }
     }
     return (
         <Segment.Group>
@@ -29,7 +33,7 @@ const WorkDetailsHeader = ({work}) => {
                     />
                     <p>{format(workDate, 'dddd Do MMMM')} at {format(workDate, 'HH:mm')} </p>
                     <p>
-                    Posted by <strong>{work.postedBy}</strong>
+                    Posted by <strong>{work.createdBy}</strong>
                     </p>
                 </Item.Content>
                 </Item>
