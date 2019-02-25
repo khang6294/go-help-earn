@@ -2,6 +2,7 @@ import React from 'react';
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
+import firebase from '../../../firebaseConfig'
 const eventImageTextStyle = {
     bottom: '5%',
     left: '5%',
@@ -11,6 +12,7 @@ const eventImageTextStyle = {
 };
 
 const WorkDetailsHeader = ({work}) => {
+    let user = firebase.auth().currentUser
     let workDate;
     if (work.date) {
         if(work.date.seconds){
@@ -42,12 +44,16 @@ const WorkDetailsHeader = ({work}) => {
         </Segment>
 
         <Segment attached="bottom">
-            <Button>Cancel My Work</Button>
-            <Button color="teal">TAKE THIS WORK</Button>
-
-            <Button as={Link} to={`/manage/${work.id}`} color="orange" floated="right">
+            { 
+                user && user.uid === work.creatorUid ? 
+                <Button>Cancel My Work</Button> :
+                user ?
+                <Button color="teal">TAKE THIS WORK</Button> :
+                null
+            }
+            {user && user.uid === work.creatorUid && <Button as={Link} to={`/manage/${work.id}`} color="orange" floated="right">
             Manage Work
-            </Button>
+            </Button>}
         </Segment>
         </Segment.Group>
     );

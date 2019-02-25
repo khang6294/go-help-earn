@@ -61,7 +61,6 @@ class WorkForm extends Component {
 
     render() {
         const {work} = this.state
-        console.log(this.props.match.params.workId)
         return (
         <>
             <Segment>

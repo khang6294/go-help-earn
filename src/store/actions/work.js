@@ -45,10 +45,11 @@ export const deleteWork = (work) => {
 }
 
 export const getWorksForDashboard = () => async (dispatch, getState) => {
-    let today = Math.floor(new Date(Date.now()).getTime() / 1000);
+    // let today = Math.floor(new Date(Date.now()).getTime() / 1000);
+    let today = new Date(Date.now())
     const firestore = firebase.firestore();
     const worksRef = firestore.collection('works');
-    const worksQuery = worksRef.where('created', '>=', today).orderBy('created','desc')
+    const worksQuery = worksRef.where('date', '>=', today)
     try {  
         let querySnap = await worksQuery.get()
         let works = [];

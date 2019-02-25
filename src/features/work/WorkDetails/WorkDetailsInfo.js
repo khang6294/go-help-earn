@@ -54,11 +54,15 @@ class WorkDetailsInfo extends Component{
                     <span>{work.place}</span>
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <Button onClick={this.showMapToggle} color="teal" size="tiny" content="Show Map" />
+                    {
+                        work.placeCoord ?
+                        <Button onClick={this.showMapToggle} color="teal" size="tiny" content="Show Map" />:
+                        "No map available"
+                    }
                 </Grid.Column>
                 </Grid>
             </Segment>
-            {this.state.showMap &&
+            {this.state.showMap && 
             <WorkDetailsMap lat={work.placeCoord.lat} lng={work.placeCoord.lng}/>}
             </Segment.Group>
         );
